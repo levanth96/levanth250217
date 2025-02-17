@@ -1,0 +1,20 @@
+#include<stdio.h>
+int main(){
+int salary,credit_score,experience;
+    printf("enter salary");
+    scanf("%d",&salary);
+    
+    printf("enter creditscore");
+    scanf("%d",&credit_score);
+    
+    printf("enter experience");
+    scanf("%d",&experience);
+    
+    if (salary>=30000&& credit_score>=750 && experience>=2)
+    {
+        printf("eligible for loan);
+    }else{
+        printf("not eligible for loan");
+    }
+    return 0;
+}
