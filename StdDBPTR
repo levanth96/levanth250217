@@ -1,0 +1,43 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+int main() {
+    int n;
+    
+    // Ask for the number of students
+    printf("Enter number of students: ");
+    scanf("%d", &n);
+
+    // Allocate memory to store student names and marks
+    char **names = (char **)malloc(n * sizeof(char *));
+    int *marks = (int *)malloc(n * sizeof(int));
+
+    if (names == NULL || marks == NULL) {
+        printf("Memory allocation failed!\n");
+        return 1;
+    }
+
+    // Get student details
+    for (int i = 0; i < n; i++) {
+        names[i] = (char *)malloc(50 * sizeof(char));  // Allocate memory for names
+
+        printf("Enter Student %d Name: ", i + 1);
+        scanf(" %[^\n]", names[i]);  // Read full name with spaces
+
+        printf("Enter Marks: ");
+        scanf("%d", &marks[i]);
+    }
+
+    // Display student records
+    printf("\nStudent Records:\n");
+    for (int i = 0; i < n; i++) {
+        printf("%s - %d\n", names[i], marks[i]);
+        free(names[i]);  // Free memory for names
+    }
+
+    // Free the remaining allocated memory
+    free(names);
+    free(marks);
+
+    return 0;
+}
