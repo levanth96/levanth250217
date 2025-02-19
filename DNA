@@ -1,0 +1,28 @@
+#include <stdio.h>
+#include <string.h>
+
+int main() {
+    char dna[1000];  // Assuming a maximum DNA sequence length of 999
+    char pattern[100]; // Assuming a maximum pattern length of 99
+
+    printf("Enter DNA Sequence: ");
+    scanf("%s", dna); // Read the DNA sequence
+
+    printf("Enter pattern to search: ");
+    scanf("%s", pattern); // Read the pattern
+
+    int count = 0;
+    int dnaLength = strlen(dna);
+    int patternLength = strlen(pattern);
+
+    // Iterate through the DNA sequence, looking for the pattern
+    for (int i = 0; i <= dnaLength - patternLength; i++) {
+        if (strncmp(dna + i, pattern, patternLength) == 0) {
+            count++; // Increment the count if the pattern is found
+        }
+    }
+
+    printf("Pattern found %d time(s) in the DNA sequence.\n", count);
+
+    return 0;
+}
