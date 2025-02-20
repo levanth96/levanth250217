@@ -7,6 +7,8 @@ struct Employee_t{
 };
 typedef struct Employee_t Employee;
 void readEmployees(Employee emp[],int n);
+void saveEmployees(Employee emp[],int n);
+void loadEmployees(Employee emp[],int n);
 void displayEmployee(Employee emp[],int n);
 Employee findHighestSalaried(Employee emp[],int n);
 int main(){
@@ -15,6 +17,8 @@ int main(){
     scanf("%d",&employeeCount);
     Employee employees[1000];
     readEmployees(employees,employeeCount);
+    saveEmployees(employees,employeeCount);
+    loadEmployees(employees,employeeCount);
     displayEmployee(employees,employeeCount);
     Employee highestSalariedEmployee = findHighestSalaried(employees,employeeCount);
     printf("Employee with highest salary:%s,%.2f (%s)\n",
@@ -26,9 +30,38 @@ int main(){
 void readEmployees(Employee emp[],int n) {
     printf("Enter details(id,name,salary,department):\n");
     for(int i=0;i<n;i++){
-        scanf("%d%s%f%s",&emp[i].id,emp[i].name,&emp[i].salary,emp[i].department);
+        scanf("%d %s %f %s",&emp[i].id,emp[i].name,&emp[i].salary,emp[i].department);
     }
    
+}
+void saveEmployees(Employee emp[],int n){
+    FILE*file=fopen("employees.txt","w");
+    if(file==NULL){
+        printf("Cannot create file.\n");
+        return;
+    }
+    //
+     for(int i=0;i<n;i++){
+         fprintf(file,"%d %s %f %s\n",&emp[i].id,emp[i].name,&emp[i].salary,emp[i].department);
+     }
+     //
+     fclose(file);
+}
+void loadEmployees(Employee emp[],int n){
+     FILE*file=fopen("employees.txt","r");
+     if(file==NULL){
+        printf("Cannot read file.\n");
+        return;
+     }
+     //
+     for(int i=0;i<n;i++){
+         fscanf(file,"%d %s %f %s\n",&emp[i].id,emp[i].name,&emp[i].salary,emp[i].department);
+     }
+     //
+     fclose(file);
+
+    
+    
 }
 void displayEmployee(Employee emp[],int n){
     printf("Employees:\n");
@@ -45,3 +78,6 @@ Employee findHighestSalaried(Employee emp[],int n){
 }
 return highestSalaried;
 }
+
+
+
