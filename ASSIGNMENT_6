@@ -1,0 +1,41 @@
+#include <stdio.h>
+
+#define MAX_AMBULANCES 100
+
+void selectionSort(int distances[], int n) {
+    for (int i = 0; i < n - 1; i++) {
+        int minIndex = i;
+        for (int j = i + 1; j < n; j++) {
+            if (distances[j] < distances[minIndex]) {
+                minIndex = j;
+            }
+        }
+        int temp = distances[minIndex];
+        distances[minIndex] = distances[i];
+        distances[i] = temp;
+    }
+}
+
+void displayAmbulances(int distances[], int n) {
+    printf("Sorted Ambulances by Distance (Ascending):\n");
+    for (int i = 0; i < n; i++) {
+        printf("Ambulance %d: Distance %d km\n", i + 1, distances[i]);
+    }
+}
+
+void assignNearestAmbulance(int distances[], int n) {
+    printf("Nearest Ambulance Assigned: Distance %d km\n", distances[0]);
+}
+
+int main() {
+    int distances[MAX_AMBULANCES] = {10, 3, 7, 1, 5; // Number of ambulances
+
+    selectionSort(distances, n);
+
+    displayAmbulances(distances, n);
+
+    printf("\n");
+    assignNearestAmbulance(distances, n);
+
+    return 0;
+}
